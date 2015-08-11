@@ -1,6 +1,6 @@
 function [ cie_stats ] = map1931gamut( I, im_type, I_mask )
 %MAP_GAMUT   This will plot the CIE 1931 xy chromaticity plot and the
-%   distribution of colors represented in the image.
+%   distribution of colors represented in the input image, I.
 
 switch nargin
     case 1

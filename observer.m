@@ -1,6 +1,14 @@
 function [CIE_obs] = observer()
-
+%OBSERVER Load the CIE 1931 observer functions which map spectra to XYZ.
 % define CIE_obs functions.
+
+% I put this in a separate function so that it would be easy to call the
+% observer functions. Can distribute CIE_obs into x_bar, y_bar, z_bar too.
+%
+% Author: Jonathan T. Elliott, Ph.D. <jte@dartmouth.edu>
+%
+
+
 for i = 1:1
 CIE_obs = [380	0.001368	0.000039	0.006450
 385	0.002236	0.000064	0.010550

@@ -66,10 +66,18 @@ hold on;
 plot( [640 300 150 640],abs( [1000 1000 1000 1000] -[330 600 060 330]),'k--', 'LineWidth',1.5);
 
 % plot contour of image gamut.
-[C,H] = contour(yg,xg,N,5);
-set(H,'LineWidth',1.5);
-colormap([0.1:0.1:0.5; 0.1:0.1:0.5; 0.1:0.1:0.5]')
+if ~strcmpi(type, 'traj')
+    [C,H] = contour(yg,xg,N,5);
+    set(H,'LineWidth',1.5);
+    colormap([0.1:0.1:0.5; 0.1:0.1:0.5; 0.1:0.1:0.5]')
+else                           % load a colorbar
+    c_xyz = applycform(I, makecform('srgb2xyz'));
+    c_xyl = applycform(xyz2double(c_xyz), makecform('xyz2xyl'));
+    cX =  c_xyl(:,1); cY =  abs( c_xyl(:,2) - 1 );
 
+    H = plot(1000.*cX(2:10:end),1000.*cY(2:10:end),'ko-', 'LineWidth',1.5, 'MarkerSize',5);
+    set(H, 'LineWidth', 1,5)
+end
 legend('sRGB', 'image')
 
 % label some monochromatic values.
